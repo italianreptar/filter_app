@@ -1,6 +1,7 @@
 #include <iostream>
 
-#include "utils.h"
+#include "filter.h"
+#include "vector_utils.h"
 #include "math.h"
 
 int main(int argc, char* argv) {
