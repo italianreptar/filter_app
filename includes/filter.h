@@ -3,6 +3,10 @@
 
 #include "vector_utils.h"
 
+#include <boost/property_tree/ptree.hpp>
+
+using boost::property_tree::ptree;
+
 class Filter {
  public:
     Filter() {
@@ -19,6 +23,19 @@ class Filter {
         _check_coeffs();
 
         std::cout << "Constructor Called!" << std::endl;
+    }
+
+    Filter(ptree& pt) {
+        for (auto& item : pt.get_child("a")) {
+            _a.push_back(item.second.get_value<double>());
+        }
+
+        for (auto& item : pt.get_child("b")) {
+            _b.push_back(item.second.get_value<double>());
+        }
+
+        _check_coeffs();
+        std::cout << "PTree Constructor Called!" << std::endl;
     }
 
     double run(double x) {

@@ -26,3 +26,10 @@ target_include_directories(
     Boost::boost
 )
 target_link_libraries(filter_app ${Boost_LIBRARIES})
+
+add_custom_command(
+    TARGET filter_app POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_SOURCE_DIR}/cfgs/filter_coeffs.json
+    ${CMAKE_SOURCE_DIR}/build/filter_coeffs.json
+)
