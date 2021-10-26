@@ -1,6 +1,7 @@
 # How to build:
 
 ``` bash
+mkdir -p build
 cd build
 cmake ..
 cmake --build . --target filter_app
@@ -8,18 +9,16 @@ cmake --build . --target filter_app
 
 ## Current Functionality:
 
-Allows user to create and use a filter to filter data.
+Allows user to create and use an LIT IIR filter to filter data. This filter must be ran repeatedly at a constant rate with using coefficients generated using any existing method.  The filter adjusts the order and buffer size automatically, making utilizing the filter as easy as the MATLAB filter function, but this code is not yet optimized.
 
 ## TODO:
-
-- Get boost working to be able to use property tree input
+- Upload python helper app
 - Make a python app to write filter coefficients to a json
 - Wrap the filter class with an actuator class which works as a linear filter
 
 ## Potential Project ideas:
 
-- Update overall framework be more package-like
-- vector-utils, filter, actuator, io
+- actuator control loop
 - Unicycle problem controls with linear actuators
-- Do some dubins path planning, and control based off the path
+    - Dubins path planning, and control using the path for guidance
 - Create a longitudinal autopilot loop in cpp and python, using an RC planes aero model
