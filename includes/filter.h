@@ -90,8 +90,11 @@ class Filter {
     void _check_coeffs(void) {
         if ( _a.size() > 0 ) {
             if ( _a[0] != 0 ) {
-                for (int i = 0; i < _a.size(); i++) {
-                    _a[i] = _a[i] / _a[0];
+                for (int i = 0; i < std::max(_a.size(), _b.size()); i++) {
+                    if ( i < _a.size() ) {
+                        _a[i] = _a[i] / _a[0];
+                    }
+
                     if ( i < _b.size() ) {
                         _b[i] = _b[i] / _a[0];
                     }
@@ -99,6 +102,8 @@ class Filter {
             } else {
                 throw std::exception("a[0] cannot be 0.");
             }
+        } else {
+            throw std::exception("size of a coefficients must be > 0.");
         }
         _fb_order = _a.size() - 1;
         _ff_order = _b.size();
